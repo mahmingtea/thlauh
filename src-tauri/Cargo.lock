@@ -4460,7 +4460,7 @@ dependencies = [
 
 [[package]]
 name = "thlauh-share"
-version = "0.0.4"
+version = "0.0.5"
 dependencies = [
  "axum",
  "axum-extra",

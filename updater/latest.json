@@ -1,23 +1,23 @@
 {
-  "version": "v0.0.4",
+  "version": "v0.0.5",
   "notes": "Add initial support for auto-updates",
-  "pub_date": "2026-07-16T10:00:01.459Z",
+  "pub_date": "2026-07-16T10:32:54.431Z",
   "platforms": {
     "darwin-aarch64": {
       "signature": "REPLACE_WITH_MAC_ARM64_SIGNATURE_FROM_BUILD",
-      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.4/thlauh!_0.0.4_aarch64.app.tar.gz"
+      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.5/thlauh!_0.0.5_aarch64.app.tar.gz"
     },
     "darwin-x86_64": {
       "signature": "REPLACE_WITH_MAC_INTEL_SIGNATURE_FROM_BUILD",
-      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.4/thlauh!_0.0.4_x64.app.tar.gz"
+      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.5/thlauh!_0.0.5_x64.app.tar.gz"
     },
     "windows-x86_64": {
       "signature": "REPLACE_WITH_WINDOWS_SIGNATURE_FROM_BUILD",
-      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.4/thlauh!_0.0.4_x64-setup.nsis.zip"
+      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.5/thlauh!_0.0.5_x64-setup.nsis.zip"
     },
     "linux-x86_64": {
       "signature": "REPLACE_WITH_LINUX_SIGNATURE_FROM_BUILD",
-      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.4/thlauh!_0.0.4_amd64.AppImage.tar.gz"
+      "url": "https://github.com/mahmingtea/thlauh/releases/download/v0.0.5/thlauh!_0.0.5_amd64.AppImage.tar.gz"
     }
   }
 }
