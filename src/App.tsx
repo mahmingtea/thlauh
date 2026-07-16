@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { invoke } from '@tauri-apps/api/core';
-import { open } from '@tauri-apps/plugin-dialog';
+import { open, ask } from '@tauri-apps/plugin-dialog';
+import { check } from '@tauri-apps/plugin-updater';
+import { relaunch } from '@tauri-apps/plugin-process';
 import Header from '@/components/app/Header';
 import FilesList from '@/components/app/FilesList';
 
@@ -47,6 +49,35 @@ export default function App() {
   });
   const [configOpen, setConfigOpen] = useState(false);
   const currentPathRef = useRef(currentBrowsingPath);
+
+  // Check for updates on startup
+  useEffect(() => {
+    const checkUpdates = async () => {
+      try {
+        const update = await check();
+        if (update) {
+          const yes = await ask(
+            `Version ${update.version} is available. Would you like to install it now?\n\nRelease Notes:\n${update.body || 'No release notes.'}`,
+            {
+              title: 'Update Available',
+              kind: 'info',
+              okLabel: 'Update',
+              cancelLabel: 'Later',
+            }
+          );
+          if (yes) {
+            await update.downloadAndInstall();
+            await relaunch();
+          }
+        }
+      } catch (err) {
+        console.error('Failed to check for updates:', err);
+      }
+    };
+    // Delay slightly to let the UI finish initial loading
+    const timer = setTimeout(checkUpdates, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     currentPathRef.current = currentBrowsingPath;

@@ -92,6 +92,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             get_ips,
             select_folder,
@@ -115,8 +116,15 @@ pub fn run() {
                 .item(&quit_item)
                 .build()?;
 
+            let tray_icon = if cfg!(target_os = "macos") {
+                Image::from_bytes(include_bytes!("../icons/32x32_macos.png"))?
+            } else {
+                Image::from_bytes(include_bytes!("../icons/32x32.png"))?
+            };
+
             let _tray = TrayIconBuilder::new()
-                .icon(Image::from_bytes(include_bytes!("../icons/32x32.png"))?)
+                .icon(tray_icon)
+                .icon_as_template(cfg!(target_os = "macos"))
                 .menu(&menu)
                 .on_menu_event(|app, event| {
                     match event.id().as_ref() {
